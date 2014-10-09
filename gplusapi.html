@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Plus Sign In and Oauth API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://apis.google.com/js/client:plusone.js" defer></script>
+    <script src="gplusapi.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="text-center">
+        <h2 class="text-center">Google Plus Sign In Shenanigans</h2>
+        <p id="status">Not signed in...</p>
+        <p id="result"></p>
+      </div>
+    </div>
+    <script>
+      function signedIn() {
+        document.getElementById("status").textContent = "Login Successful!";
+        gapi.client.load('plus', 'v1', apiClientLoaded);
+      }
+      function apiClientLoaded() {
+        var request = gapi.client.plus.people.get({'userId' : 'me'});
+        request.execute(function(resp) { document.getElementById("result").textContent = JSON.stringify(resp); });
+      }
+    </script>
+  </body>
+</html>
