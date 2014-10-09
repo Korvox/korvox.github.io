@@ -7,7 +7,7 @@
     <script src="https://apis.google.com/js/client:plusone.js" defer></script>
     <script src="gplusapi.js" defer></script>
   </head>
-  <body onLoad="auth()">
+  <body onLoad="pageLoaded()">
     <div class="container">
       <div class="text-center">
         <h2 class="text-center">Google Plus Sign In Shenanigans</h2>
@@ -15,15 +15,5 @@
         <p id="result"></p>
       </div>
     </div>
-    <script>
-      function signedIn() {
-        document.getElementById("status").textContent = "Login Successful!";
-        gapi.client.load('plus', 'v1', apiClientLoaded);
-      }
-      function apiClientLoaded() {
-        var request = gapi.client.plus.people.get({'userId' : 'me'});
-        request.execute(function(resp) { document.getElementById("result").textContent = JSON.stringify(resp); });
-      }
-    </script>
   </body>
 </html>
